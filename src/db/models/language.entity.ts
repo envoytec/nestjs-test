@@ -2,12 +2,9 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  ManyToOne,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
   OneToMany
 } from 'typeorm';
-import { closeSync } from 'fs';
 
 import { Field, ObjectType } from '@nestjs/graphql';
 import Movie from './movie.entity';
