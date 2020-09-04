@@ -1,6 +1,6 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import RepoService from 'src/services/repo.service';
-import Movie from 'src/db/models/movie.entity';
+import RepoService from '../services/repo.service';
+import Movie from '../db/models/movie.entity';
 import MovieInput from './input/movie.input';
 
 @Resolver()
@@ -19,8 +19,18 @@ export default class MovieResolver {
 
   @Mutation(() => Movie)
   public async createMovie(@Args('data') input: MovieInput): Promise<Movie>{
-    const movie = this.repoService.movieRepo.create({  
-
+    const movie = this.repoService.movieRepo.create({
+      languageId: input.languageId,
+      name: input.name,
+      imdbLink: input.imdbLink,
+      genre: input.genre,
+      author: input.author,
+      evaluation: input.evaluation,
+      subtitles: input.subtitles,
+      synopsis: input.synopsis,
+      releaseDate: input.releaseDate
     })
+
+    return this.repoService.movieRepo.save(movie);
   }
 }

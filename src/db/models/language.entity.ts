@@ -29,8 +29,9 @@ export default class Language {
   @CreateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @Field()
-  @CreateDateColumn()
+  @Field({
+    defaultValue: true
+  })
   active: boolean;
 
   @OneToMany(

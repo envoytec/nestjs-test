@@ -19,6 +19,10 @@ export default class Movie {
   id: number;
 
   @Field()
+  @Column({ name: 'language_id' })
+  languageId: number;
+
+  @Field()
   @Column()
   name: string;
 
@@ -58,19 +62,17 @@ export default class Movie {
   @CreateDateColumn({ name: 'updated_at' })
   updatedAt: Date;
 
-  @Field()
-  @CreateDateColumn()
+  @Field({
+    defaultValue: true
+  })
   active: boolean;
-
-  @Field(() => Language)
-  language: Language;
 
   @ManyToOne(
     () => Language,
     language => language.movieConnection,
     { primary: true },
   )
-  @JoinColumn({ name: 'movie_language' })
+  @JoinColumn({ name: 'language_id' })
   languageConnection: Promise<Language>
 
 }

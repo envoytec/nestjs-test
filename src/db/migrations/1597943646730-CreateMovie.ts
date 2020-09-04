@@ -13,6 +13,11 @@ export class CreateMovie1597943646730 implements MigrationInterface {
         generationStrategy: 'increment'
       },
       {
+        name: 'language_id',
+        type: 'integer',
+        isNullable: false,
+      },
+      {
         name: 'name',
         type: 'varchar',
         length: '255',
@@ -33,11 +38,6 @@ export class CreateMovie1597943646730 implements MigrationInterface {
         name: 'release_date',
         type: 'timestamptz',
         isNullable: true,
-      },
-      {
-        name: 'language',
-        type: 'varchar',
-        isNullable: false,
       },
       {
         name: 'subtitles',
@@ -64,10 +64,6 @@ export class CreateMovie1597943646730 implements MigrationInterface {
         isNullable: true,
       },
       {
-        name: 'movie_language',
-        type: 'integer'
-      },
-      {
         name: 'active',
         type: 'bool',
         default: true,
@@ -88,7 +84,7 @@ export class CreateMovie1597943646730 implements MigrationInterface {
   });
 
   private foreignKey = new TableForeignKey({
-    columnNames: ['movie_language'],
+    columnNames: ['language_id'],
     referencedColumnNames: ['id'],
     referencedTableName: 'language',
   });

@@ -1,0 +1,59 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Language {
+  id: Float!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  active: Boolean!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Movie {
+  id: Float!
+  languageId: Float!
+  name: String!
+  synopsis: String!
+  genre: String!
+  releaseDate: DateTime!
+  subtitles: String!
+  author: String!
+  imdbLink: String!
+  evaluation: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  active: Boolean!
+}
+
+type Query {
+  getMovies: [Movie!]!
+  getMovie(id: Float!): Movie
+  getLanguages: [Language!]!
+}
+
+type Mutation {
+  createMovie(data: MovieInput!): Movie!
+  createLanguage(data: LanguageInput!): Language!
+}
+
+input MovieInput {
+  name: String!
+  synopsis: String!
+  genre: String!
+  releaseDate: DateTime!
+  subtitles: String!
+  author: String!
+  imdbLink: String!
+  evaluation: String!
+  languageId: Float!
+}
+
+input LanguageInput {
+  name: String!
+}
