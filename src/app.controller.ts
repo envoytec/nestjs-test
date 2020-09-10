@@ -1,12 +1,12 @@
 import { Controller, Get } from '@nestjs/common';
-import RepoService from './services/repo.service';
+import MovieService from './modules/movie/movie.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly repoService: RepoService) {}
+  constructor(private readonly movieService: MovieService) {}
 
   @Get()
   async getHello(): Promise<number> {
-    return await this.repoService.movieRepo.count();
+    return await this.movieService.movieRepository.count();
   }
 }

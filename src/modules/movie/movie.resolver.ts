@@ -1,25 +1,25 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import RepoService from '../services/repo.service';
-import Movie from '../db/models/movie.entity';
-import MovieInput from './input/movie.input';
+import MovieService from './movie.service';
+import Movie from './movie.entity';
+import MovieInput from './movie.input';
 
 @Resolver()
 export default class MovieResolver {
-  constructor(private readonly repoService: RepoService){}
+  constructor(private readonly movieService: MovieService){}
 
   @Query(() => [Movie])
   public async getMovies(): Promise<Movie[]> {
-    return this.repoService.movieRepo.find();
+    return this.movieService.movieRepository.find();
   }
 
   @Query(() => Movie, { nullable: true})
   public async getMovie(@Args('id') id: number): Promise<Movie> {
-    return this.repoService.movieRepo.findOne(id);
+    return this.movieService.movieRepository.findOne(id);
   }
 
   @Mutation(() => Movie)
   public async createMovie(@Args('data') input: MovieInput): Promise<Movie>{
-    const movie = this.repoService.movieRepo.create({
+    const movie = this.movieService.movieRepository.create({
       languageId: input.languageId,
       name: input.name,
       imdbLink: input.imdbLink,
@@ -31,6 +31,6 @@ export default class MovieResolver {
       releaseDate: input.releaseDate
     })
 
-    return this.repoService.movieRepo.save(movie);
+    return this.movieService.movieRepository.save(movie);
   }
 }

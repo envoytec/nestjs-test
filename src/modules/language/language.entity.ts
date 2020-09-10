@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 import { Field, ObjectType } from '@nestjs/graphql';
-import Movie from './movie.entity';
+import Movie from '../movie/movie.entity';
 
 @ObjectType()
 @Entity({ name: 'language' })

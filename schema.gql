@@ -32,14 +32,18 @@ type Movie {
 }
 
 type Query {
+  getLanguages: [Language!]!
   getMovies: [Movie!]!
   getMovie(id: Float!): Movie
-  getLanguages: [Language!]!
 }
 
 type Mutation {
-  createMovie(data: MovieInput!): Movie!
   createLanguage(data: LanguageInput!): Language!
+  createMovie(data: MovieInput!): Movie!
+}
+
+input LanguageInput {
+  name: String!
 }
 
 input MovieInput {
@@ -52,8 +56,4 @@ input MovieInput {
   imdbLink: String!
   evaluation: String!
   languageId: Float!
-}
-
-input LanguageInput {
-  name: String!
 }

@@ -1,12 +1,16 @@
 import * as path from 'path';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import getEntities from './entities';
+
+const entities = getEntities();
 
 const options: TypeOrmModuleOptions = {
   type: 'sqlite',
-  database: 'date/movies.db',
+  database: 'data/movies.db',
   logging: true,
-  entities: [path.resolve(__dirname, '..', 'db', 'models', '*')] ,
-  migrations: [path.resolve(__dirname, '..', 'db', 'migrations', '*')] ,
+  entities,
+  migrations: [path.resolve(__dirname, '..', 'database', 'migrations', '*')] ,
+  cli: { migrationsDir: path.join(__dirname, '..', 'database', 'migrations')}
 }
 
 module.exports = options;
